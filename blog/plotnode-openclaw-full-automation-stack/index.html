@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlotNode + OpenClaw: The Full Video Automation Stack — PlotNode Blog</title>
+  <meta name="description" content="How PlotNode's structured video pre-production engine integrates with OpenClaw to create an end-to-end AI automation pipeline for YouTube creators. Structured JSON exports, ClawHub plugin, and webhooks.">
+  <meta name="keywords" content="PlotNode, OpenClaw, video automation, AI video pipeline, YouTube automation, structured JSON, ClawHub, video pre-production, retention optimization, n8n, webhooks">
+  <link rel="canonical" href="https://plotnode.io/blog/plotnode-openclaw-full-automation-stack/">
+  <meta property="og:title" content="PlotNode + OpenClaw: The Full Video Automation Stack">
+  <meta property="og:description" content="How PlotNode's structural IDE for video creators integrates natively with OpenClaw to create the first complete AI video automation pipeline.">
+  <meta property="og:url" content="https://plotnode.io/blog/plotnode-openclaw-full-automation-stack/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="PlotNode">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PlotNode + OpenClaw: The Full Video Automation Stack">
+  <meta name="twitter:description" content="How PlotNode's structural IDE integrates natively with OpenClaw to build the first complete AI video automation pipeline.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-deep: #0f0a1a;
+      --purple-main: #8B5CF6;
+      --purple-light: #a78bfa;
+      --purple-glow: #7c3aed;
+      --green-accent: #10b981;
+      --text-primary: #f1f0f5;
+      --text-secondary: #a1a1aa;
+      --text-dim: #71717a;
+      --surface-dark: #0D0918;
+      --surface-card: #1A1625;
+      --border-subtle: rgba(139,92,246,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--purple-light); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--purple-main); }
+
+    /* Nav */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: rgba(13,9,24,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: var(--purple-main) !important;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--purple-glow) !important; }
+
+    /* Article Layout */
+    .article-container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .article-header {
+      padding: 9rem 0 3rem;
+      text-align: center;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .article-tag {
+      padding: 0.2rem 0.6rem;
+      background: rgba(139,92,246,0.15);
+      color: var(--purple-light);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .article-header h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-header .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Article Body */
+    .article-body {
+      padding-bottom: 5rem;
+    }
+
+    .article-body h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin: 3rem 0 1rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .article-body h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 2rem 0 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .article-body p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .article-body strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .article-body ul, .article-body ol {
+      color: var(--text-secondary);
+      margin: 0 0 1.5rem 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .article-body li {
+      margin-bottom: 0.5rem;
+    }
+
+    .article-body blockquote {
+      border-left: 3px solid var(--purple-main);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      background: rgba(139,92,246,0.05);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    .article-body code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(139,92,246,0.1);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--purple-light);
+    }
+
+    .article-body pre {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .article-body pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .callout {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+    }
+
+    .callout h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--purple-light);
+    }
+
+    .callout p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--purple-main);
+      border-radius: 2px;
+      margin: 3rem auto;
+    }
+
+    /* CTA Banner */
+    .article-cta {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin: 3rem 0 4rem;
+    }
+
+    .article-cta h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .article-cta p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .article-cta .cta-btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--purple-main);
+      color: white;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .article-cta .cta-btn:hover {
+      background: var(--purple-glow);
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+    .footer a { color: var(--purple-light); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .article-header { padding: 7rem 0 2rem; }
+    }
+  </style>
+
+  <!-- JSON-LD Article Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "PlotNode + OpenClaw: The Full Video Automation Stack",
+    "description": "How PlotNode's structured video pre-production engine integrates with OpenClaw to create an end-to-end AI automation pipeline for YouTube creators.",
+    "datePublished": "2026-03-27",
+    "dateModified": "2026-03-27",
+    "author": {
+      "@type": "Organization",
+      "name": "PlotNode",
+      "url": "https://plotnode.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PlotNode",
+      "url": "https://plotnode.io"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://plotnode.io/blog/plotnode-openclaw-full-automation-stack/"
+    },
+    "keywords": ["PlotNode", "OpenClaw", "video automation", "AI pipeline", "YouTube automation", "structured JSON", "ClawHub", "webhooks"]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/logo.svg" alt="PlotNode Logo">
+        PlotNode
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#views">Views</a></li>
+        <li><a href="/#exports">Exports</a></li>
+        <li><a href="/#roadmap">Roadmap</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#signup" class="nav-cta">Get Early Access</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="article-container">
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="article-tag">Integration</span>
+        <span>March 27, 2026</span>
+        <span>&middot; 8 min read</span>
+      </div>
+      <h1>PlotNode + OpenClaw: The Full Video Automation Stack</h1>
+      <p class="subtitle">What happens when a structural video IDE meets an AI agent that can execute anything? You get a pipeline that plans, produces, and publishes &mdash; without the busywork.</p>
+    </header>
+
+    <div class="article-body">
+      <h2>The Problem: Great Videos Still Start with Blank Timelines</h2>
+
+      <p>Every YouTube creator faces the same bottleneck. You have an idea, maybe even a script, but the path from concept to published video is a tangled mess of manual decisions. Which segments go where? How long should the hook be? When should B-roll cut in? Where will viewers drop off?</p>
+
+      <p>Most creators solve this with gut instinct and hope. Post-mortem analytics tools like vidIQ and TubeBuddy will tell you <strong>what went wrong</strong> after you've already spent 20 hours editing. By then, the damage is done.</p>
+
+      <p>PlotNode was built to solve this. It's a <strong>structural IDE for video creators</strong> &mdash; a tool that lets you visually map, score, and validate your video structure before you ever hit record. But structure alone is just the beginning. What if your structured plan could automatically trigger everything that comes next?</p>
+
+      <h2>Enter OpenClaw: Your Personal AI Execution Layer</h2>
+
+      <p><a href="https://openclaw.ai" target="_blank" rel="noopener">OpenClaw</a> is an open-source, locally-run AI assistant that acts as a personal operating system. It reads files, executes scripts, browses the web, manages workflows, and learns your preferences over time. It connects to the tools you already use &mdash; Slack, GitHub, Obsidian, email &mdash; through 50+ integrations and thousands of community-built skills on <strong>ClawHub</strong>.</p>
+
+      <p>Where PlotNode provides the structural intelligence for your video, OpenClaw provides the execution intelligence for everything else. Together, they form a complete pipeline: <strong>plan once, automate everything</strong>.</p>
+
+      <h2>How the Integration Works</h2>
+
+      <p>PlotNode doesn't just export pretty documents. Every video structure you build &mdash; every segment, retention score, timing decision, and content annotation &mdash; exports as <strong>clean, machine-readable JSON</strong>. This isn't an afterthought; structured export was designed into PlotNode from day one specifically for AI-driven workflows.</p>
+
+      <h3>Structured JSON: The Universal Handshake</h3>
+
+      <p>When you export from PlotNode, you get a JSON payload that includes your complete video blueprint: segment order and timing, content type classifications (A-roll, B-roll, CTA, etc.), retention scores at each point, pacing recommendations, and structural metadata that any downstream tool can parse.</p>
+
+      <p>Here's what a simplified segment looks like in PlotNode's export format:</p>
+
+      <pre><code>{
+  "segment": "hook",
+  "position": 1,
+  "duration_sec": 12,
+  "content_type": "a-roll",
+  "retention_score": 87,
+  "notes": "Pattern interrupt with bold claim",
+  "pacing": "fast",
+  "transitions": {
+    "in": "cold-open",
+    "out": "cut-to-broll"
+  }
+}</code></pre>
+
+      <p>This structured data is what makes the PlotNode-to-OpenClaw pipeline possible. Your OpenClaw agent doesn't need to interpret a vague creative brief &mdash; it receives precise, machine-readable instructions about what your video needs.</p>
+
+      <h3>The ClawHub Plugin (Coming Soon)</h3>
+
+      <p>We're building an official PlotNode plugin for <strong>ClawHub</strong> &mdash; OpenClaw's skill marketplace. Once installed, your OpenClaw agent will be able to natively pull and push PlotNode structures through our API. No glue code. No custom scripts. No middleware.</p>
+
+      <p>The ClawHub plugin will let your agent do things like:</p>
+
+      <ul>
+        <li><strong>Pull your latest video structure</strong> directly from PlotNode and use it to generate a shooting schedule, asset list, or script outline</li>
+        <li><strong>Push revisions back</strong> into PlotNode after analyzing performance data from previous videos</li>
+        <li><strong>Trigger downstream workflows</strong> automatically when a structure is finalized &mdash; like queuing up thumbnail generation, scheduling social posts, or pre-building your editing timeline</li>
+      </ul>
+
+      <h3>Webhooks for Everything Else</h3>
+
+      <p>Not everyone runs OpenClaw, and not every workflow needs an AI agent. That's why PlotNode also fires <strong>webhooks</strong> on every export, score change, and structure update. If you use n8n, Make, Zapier, or your own backend, you can plug PlotNode into any automation stack.</p>
+
+      <p>Webhooks give you real-time event data: structure finalized, score threshold hit, export triggered, segment modified. You choose what to listen to and what to act on.</p>
+
+      <h2>What the Full Stack Looks Like in Practice</h2>
+
+      <p>Here's a realistic workflow for a YouTube creator using PlotNode and OpenClaw together:</p>
+
+      <p><strong>Step 1: Plan your video in PlotNode.</strong> Open Map View, drag your segments into position, tag content types, and watch your retention score update in real time. The scoring engine flags weak points &mdash; your intro is too long, there's no B-roll in the middle third, the CTA placement will hit at a known drop-off point. Fix it before you film.</p>
+
+      <p><strong>Step 2: Finalize and export.</strong> When your structure scores above your threshold, export the JSON. This triggers a webhook (or the ClawHub plugin sends it directly to your OpenClaw agent).</p>
+
+      <p><strong>Step 3: OpenClaw takes over.</strong> Your agent receives the structured blueprint and executes your pre-configured workflow. It could generate a detailed shot list from your segment annotations, create a script draft based on your structure and topic notes, build a Premiere Pro timeline template using PlotNode's NLE export, schedule social media teasers timed to your publish date, or draft YouTube metadata (title, description, tags, chapters) from your structure.</p>
+
+      <p><strong>Step 4: You film and edit.</strong> When you sit down to record, your shot list is ready. When you open your NLE, your timeline structure is already built. Segments map directly to video tracks: A-Roll to V1, B-Roll to V2/V3. Your planning became production-ready before you filmed a single frame.</p>
+
+      <div class="callout">
+        <h4>Why This Matters</h4>
+        <p>The gap between "I have an idea" and "the video is published" is where most creators lose momentum. By connecting structural planning (PlotNode) to autonomous execution (OpenClaw), you collapse that gap into a single automated pipeline. The creative work stays human. The busywork disappears.</p>
+      </div>
+
+      <h2>Beyond Video: Why Structured Output Changes Everything</h2>
+
+      <p>PlotNode's structured JSON export isn't just useful for OpenClaw. It's a design decision that positions your video planning data as <strong>first-class input for any AI system</strong>. Large language models work best when they receive structured, well-labeled data &mdash; and that's exactly what PlotNode produces.</p>
+
+      <p>This means as AI tools evolve, your PlotNode structures become more valuable, not less. Every new AI capability &mdash; better script generation, smarter thumbnail design, more accurate audience analysis &mdash; can plug into the same structured export. Your pre-production data becomes the foundation for an expanding ecosystem of automations.</p>
+
+      <h2>Getting Started</h2>
+
+      <p>PlotNode is currently in <strong>pre-launch early access</strong>. If you're a creator who wants to stop guessing at structure and start engineering it, sign up now. You'll be among the first to use PlotNode's structured export with OpenClaw when the ClawHub plugin launches.</p>
+
+      <p>If you're already using OpenClaw, the JSON export format is designed to work with any skill that accepts structured data. Build your own workflows today, or wait for the official ClawHub plugin for a zero-config experience.</p>
+
+      <div class="article-cta">
+        <h3>Be the first to automate your video pipeline.</h3>
+        <p>Sign up for PlotNode early access. Free. No credit card required.</p>
+        <a href="/#signup" class="cta-btn">Get Early Access</a>
+      </div>
+
+      <div class="divider"></div>
+
+      <p><em>PlotNode is the structural IDE for video creators. Map your segments visually, get retention predictions before you film, and export to 8 formats including Premiere, DaVinci, Final Cut Pro, and structured JSON for AI pipelines. <a href="/">Learn more at plotnode.io</a>.</em></p>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <p>&copy; 2026 PlotNode. The Structural IDE for Video Creators. <a href="mailto:hello@plotnode.io">hello@plotnode.io</a> &middot; <a href="/blog/">Blog</a></p>
+  </footer>
+
+</body>
+</html>

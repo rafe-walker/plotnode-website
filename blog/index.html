@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — PlotNode</title>
+  <meta name="description" content="Insights on video pre-production, retention science, AI automation, and building smarter YouTube workflows. From the team behind PlotNode.">
+  <link rel="canonical" href="https://plotnode.io/blog/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-deep: #0f0a1a;
+      --purple-main: #8B5CF6;
+      --purple-light: #a78bfa;
+      --purple-glow: #7c3aed;
+      --green-accent: #10b981;
+      --text-primary: #f1f0f5;
+      --text-secondary: #a1a1aa;
+      --text-dim: #71717a;
+      --surface-dark: #0D0918;
+      --surface-card: #1A1625;
+      --border-subtle: rgba(139,92,246,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--purple-light); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--purple-main); }
+
+    /* Nav */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      transition: background 0.3s, backdrop-filter 0.3s;
+      background: rgba(13,9,24,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: var(--purple-main) !important;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--purple-glow) !important; }
+
+    /* Container */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* Blog Header */
+    .blog-header {
+      padding: 8rem 0 3rem;
+      text-align: center;
+    }
+    .blog-header h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+    .blog-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Blog Grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0 6rem;
+    }
+
+    .blog-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .blog-card:hover {
+      border-color: rgba(139,92,246,0.4);
+      transform: translateY(-3px);
+    }
+
+    .blog-card-img {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(231,76,60,0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .blog-card-body { padding: 1.75rem; }
+
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .blog-card-tag {
+      padding: 0.15rem 0.5rem;
+      background: rgba(139,92,246,0.15);
+      color: var(--purple-light);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .blog-card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .blog-card h2 a {
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .blog-card h2 a:hover { color: var(--purple-light); }
+
+    .blog-card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--purple-light);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .read-more:hover { color: var(--purple-main); }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+    .footer a { color: var(--purple-light); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "PlotNode Blog",
+    "description": "Insights on video pre-production, retention science, AI automation, and building smarter YouTube workflows.",
+    "url": "https://plotnode.io/blog/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "PlotNode",
+      "url": "https://plotnode.io"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/logo.svg" alt="PlotNode Logo">
+        PlotNode
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#views">Views</a></li>
+        <li><a href="/#exports">Exports</a></li>
+        <li><a href="/#roadmap">Roadmap</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#signup" class="nav-cta">Get Early Access</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header class="blog-header">
+      <h1>The PlotNode Blog</h1>
+      <p>Insights on video pre-production, retention science, and building smarter creator workflows with AI.</p>
+    </header>
+
+    <div class="blog-grid">
+
+      <article class="blog-card">
+        <div class="blog-card-img">&#x1F916;&#x1F99E;</div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-card-tag">Integration</span>
+            <span>March 27, 2026</span>
+            <span>&middot; 8 min read</span>
+          </div>
+          <h2><a href="/blog/plotnode-openclaw-full-automation-stack/">PlotNode + OpenClaw: The Full Video Automation Stack</a></h2>
+          <p>What happens when a structural video IDE meets an AI agent that can execute anything? You get an end-to-end automation pipeline that plans, produces, and publishes &mdash; without the busywork.</p>
+          <a href="/blog/plotnode-openclaw-full-automation-stack/" class="read-more">Read article &rarr;</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 PlotNode. The Structural IDE for Video Creators. <a href="mailto:hello@plotnode.io">hello@plotnode.io</a> &middot; <a href="/blog/">Blog</a></p>
+  </footer>
+
+</body>
+</html>

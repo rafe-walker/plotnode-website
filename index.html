@@ -1515,6 +1515,186 @@
     .email-success.show {
       display: flex;
     }
+
+    /* ---- OPENCLAW INTEGRATION ---- */
+    .openclaw-section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .openclaw-hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .openclaw-hero img {
+      width: 80px;
+      height: 80px;
+      filter: drop-shadow(0 0 20px rgba(231,76,60,0.3));
+      animation: lobsterBob 3s ease-in-out infinite;
+    }
+
+    @keyframes lobsterBob {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(3deg); }
+    }
+
+    .openclaw-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0 2.5rem;
+    }
+
+    .openclaw-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .openclaw-card:hover {
+      border-color: rgba(231,76,60,0.4);
+      transform: translateY(-3px);
+    }
+
+    .openclaw-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .openclaw-card .chip {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      background: rgba(231,76,60,0.15);
+      color: #FF6B6B;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .openclaw-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .openclaw-card .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .openclaw-tagline {
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .openclaw-tagline span {
+      background: linear-gradient(135deg, #E74C3C, #FF6B6B);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ---- BLOG ---- */
+    .blog-section {
+      padding: 5rem 0;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .blog-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .blog-card:hover {
+      border-color: rgba(139,92,246,0.4);
+      transform: translateY(-3px);
+    }
+
+    .blog-card-body {
+      padding: 1.75rem;
+    }
+
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .blog-card-tag {
+      padding: 0.15rem 0.5rem;
+      background: rgba(139,92,246,0.15);
+      color: var(--purple-light);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .blog-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .blog-card h3 a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .blog-card h3 a:hover {
+      color: var(--purple-light);
+    }
+
+    .blog-card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .blog-card .read-more {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--purple-light);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .blog-card .read-more:hover {
+      color: var(--purple-main);
+    }
   </style>
 </head>
 <body>
@@ -1531,6 +1711,7 @@
         <li><a href="#views">Views</a></li>
         <li><a href="#exports">Exports</a></li>
         <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="/blog/">Blog</a></li>
         <li><a href="#signup" class="nav-cta">Get Early Access</a></li>
       </ul>
     </div>
@@ -2062,6 +2243,38 @@
     </div>
   </section>
 
+  <!-- ============ OPENCLAW INTEGRATION ============ -->
+  <section class="openclaw-section container" id="openclaw">
+    <div class="section-header reveal">
+      <div class="openclaw-hero">
+        <img src="lobster.svg" alt="OpenClaw Lobster">
+      </div>
+      <div class="section-label">Native Integration</div>
+      <h2>Built for <span class="gradient-text">OpenClaw</span></h2>
+      <p class="subtitle">PlotNode is the first node in your AI automation pipeline. Export your video structure and let your OpenClaw agent handle the rest &mdash; scripting, asset generation, scheduling, publishing.</p>
+    </div>
+
+    <div class="openclaw-cards reveal">
+      <div class="openclaw-card">
+        <span class="card-icon">{ }</span>
+        <h3>Structured JSON Export</h3>
+        <p>Every segment, score, and timing decision exports as clean, machine-readable JSON. Built from day one to feed directly into OpenClaw skills and workflows.</p>
+      </div>
+      <div class="openclaw-card">
+        <span class="card-icon">&#x1F9E9;</span>
+        <h3>ClawHub Plugin <span class="chip">Coming Soon</span></h3>
+        <p>Our official plugin on ClawHub will let your OpenClaw agent pull and push PlotNode structures natively through our API. No glue code. No middleware.</p>
+      </div>
+      <div class="openclaw-card">
+        <span class="card-icon">&#x1F517;</span>
+        <h3>Webhooks for Everything Else</h3>
+        <p>Prefer n8n, Make, or your own stack? PlotNode fires webhooks on every export, score change, and structure update. Plug into anything.</p>
+      </div>
+    </div>
+
+    <p class="openclaw-tagline reveal">Structure it once. <span>Automate it everywhere.</span></p>
+  </section>
+
   <!-- ============ COMPARISON TABLE ============ -->
   <section class="comparison-section container">
     <div class="section-header reveal">
@@ -2247,7 +2460,7 @@
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
-    <p>&copy; 2026 PlotNode. The Structural IDE for Video Creators. <a href="mailto:hello@plotnode.io">hello@plotnode.io</a></p>
+    <p>&copy; 2026 PlotNode. The Structural IDE for Video Creators. <a href="mailto:hello@plotnode.io">hello@plotnode.io</a> &middot; <a href="/blog/" style="color:var(--purple-light);">Blog</a></p>
   </footer>
 
   <script>
