@@ -29,27 +29,27 @@
   </defs>
 
   <!-- Bars — centered around x=200 -->
-  <rect x="120" y="100" width="28" height="65" rx="4" fill="url(#bar1)"/>
-  <rect x="156" y="60" width="28" height="105" rx="4" fill="url(#bar2)"/>
-  <rect x="192" y="20" width="28" height="145" rx="4" fill="url(#bar3)"/>
-  <rect x="228" y="40" width="28" height="125" rx="4" fill="url(#bar4)"/>
-  <rect x="264" y="5" width="28" height="160" rx="4" fill="url(#bar5)"/>
+  <rect x="95" y="100" width="28" height="65" rx="4" fill="url(#bar1)"/>
+  <rect x="131" y="60" width="28" height="105" rx="4" fill="url(#bar2)"/>
+  <rect x="167" y="20" width="28" height="145" rx="4" fill="url(#bar3)"/>
+  <rect x="203" y="40" width="28" height="125" rx="4" fill="url(#bar4)"/>
+  <rect x="239" y="5" width="28" height="160" rx="4" fill="url(#bar5)"/>
 
   <!-- Wave line — centered -->
-  <path d="M112 150 C132 150, 142 130, 162 125 C182 120, 192 145, 212 155 C232 165, 247 120, 267 110 C287 100, 297 135, 312 140"
+  <path d="M87 150 C107 150, 117 130, 137 125 C157 120, 167 145, 187 155 C207 165, 222 120, 242 110 C262 100, 272 135, 287 140"
         stroke="url(#wave)" stroke-width="4.5" fill="none" stroke-linecap="round"/>
 
   <!-- Nodes on wave -->
-  <circle cx="134" cy="141" r="5.5" fill="#8B5CF6"/>
-  <circle cx="170" cy="123" r="5.5" fill="#06B6D4"/>
-  <circle cx="212" cy="155" r="5.5" fill="#22D3EE"/>
-  <circle cx="256" cy="115" r="5.5" fill="#22D3EE"/>
-  <circle cx="300" cy="135" r="5.5" fill="#34D399"/>
+  <circle cx="109" cy="141" r="5.5" fill="#8B5CF6"/>
+  <circle cx="145" cy="123" r="5.5" fill="#06B6D4"/>
+  <circle cx="187" cy="155" r="5.5" fill="#22D3EE"/>
+  <circle cx="231" cy="115" r="5.5" fill="#22D3EE"/>
+  <circle cx="275" cy="135" r="5.5" fill="#34D399"/>
 
   <!-- Green swoosh at end -->
-  <path d="M282 120 C297 105, 307 125, 318 130 C325 133, 325 112, 332 105"
+  <path d="M257 120 C272 105, 282 125, 293 130 C300 133, 300 112, 307 105"
         stroke="#34D399" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  <circle cx="332" cy="105" r="4.5" fill="#34D399"/>
+  <circle cx="307" cy="105" r="4.5" fill="#34D399"/>
 
   <!-- PLOTNODE text -->
   <text x="200" y="235" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="48" letter-spacing="6" fill="#8B5CF6">PLOTNODE</text>
