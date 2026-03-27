@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="6" fill="#0D0918"/>
+  <rect x="4" y="10" width="4" height="8" rx="1" fill="#FF4D6A"/>
+  <rect x="9.5" y="6" width="4" height="12" rx="1" fill="#FF7B2E"/>
+  <rect x="15" y="3" width="4" height="15" rx="1" fill="#8B5CF6"/>
+  <rect x="20.5" y="5" width="4" height="13" rx="1" fill="#7C3AED"/>
+  <rect x="26" y="2" width="4" height="16" rx="1" fill="#F97316"/>
+  <path d="M4 22 C8 22, 10 19, 13 18 C16 17, 18 21, 21 23 C24 25, 26 18, 29 16"
+        stroke="url(#w)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="8" cy="20.5" r="1.5" fill="#8B5CF6"/>
+  <circle cx="15" cy="18.5" r="1.5" fill="#06B6D4"/>
+  <circle cx="21" cy="23" r="1.5" fill="#22D3EE"/>
+  <circle cx="28" cy="17" r="1.5" fill="#34D399"/>
+  <defs>
+    <linearGradient id="w" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#22D3EE"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+</svg>
