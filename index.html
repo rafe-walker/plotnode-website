@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PlotNode — Structure Smarter. Film Faster. Retain More.</title>
   <meta name="description" content="The first video pre-production engine with a built-in structure scoring engine. Plan your YouTube videos visually, get retention predictions, and export directly to Premiere, DaVinci, or Final Cut Pro.">
+  <link rel="canonical" href="https://plotnode.io/">
+  <!-- Open Graph -->
+  <meta property="og:title" content="PlotNode — Structure Smarter. Film Faster. Retain More.">
+  <meta property="og:description" content="The first video pre-production engine with a built-in structure scoring engine. Plan your YouTube videos visually, get retention predictions, and export directly to Premiere, DaVinci, or Final Cut Pro.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plotnode.io">
+  <meta property="og:image" content="https://plotnode.io/favicon-180.png">
+  <meta property="og:site_name" content="PlotNode">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PlotNode — Structure Smarter. Film Faster. Retain More.">
+  <meta name="twitter:description" content="The first video pre-production engine with a built-in structure scoring engine. Plan your YouTube videos visually, get retention predictions, and export directly to Premiere, DaVinci, or Final Cut Pro.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -1699,7 +1711,78 @@
     .blog-card .read-more:hover {
       color: var(--purple-main);
     }
+
+    /* Visually hidden utility for accessible labels */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://plotnode.io/#organization",
+        "name": "PlotNode",
+        "url": "https://plotnode.io",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://plotnode.io/logo.svg"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@plotnode.io",
+          "contactType": "customer support"
+        },
+        "description": "PlotNode is the structural IDE for video creators. Map your video segments on a visual timeline, get research-backed retention predictions, and export directly to Premiere, DaVinci, or Final Cut Pro."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://plotnode.io/#website",
+        "url": "https://plotnode.io",
+        "name": "PlotNode",
+        "description": "The first video pre-production engine with a built-in structure scoring engine.",
+        "publisher": {
+          "@id": "https://plotnode.io/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://plotnode.io/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://plotnode.io/#app",
+        "name": "PlotNode",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free early access"
+        },
+        "description": "PlotNode is the structural IDE for video creators — visually map your video segments, get retention predictions, and export to Premiere, DaVinci, or Final Cut Pro before you film.",
+        "url": "https://plotnode.io",
+        "publisher": {
+          "@id": "https://plotnode.io/#organization"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -1720,6 +1803,8 @@
       </ul>
     </div>
   </nav>
+
+  <main id="main-content">
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
@@ -1744,7 +1829,8 @@
 
       <div class="email-form-wrapper">
         <form class="email-form" id="heroForm" onsubmit="handleEmailSubmit(event, 'heroForm')" action="https://formspree.io/f/mvzvgdkn" method="POST">
-          <input type="email" name="email" placeholder="Enter your email for early access" required>
+          <label for="hero-email" class="sr-only">Email address</label>
+          <input type="email" id="hero-email" name="email" placeholder="Enter your email for early access" required>
           <button type="submit">Get Early Access</button>
         </form>
         <div class="email-success" id="heroForm-success">
@@ -1913,15 +1999,15 @@
       <p class="subtitle">Three purpose-built views of the same video plan. Switch instantly. Your work persists across all three.</p>
     </div>
 
-    <div class="view-tabs reveal">
-      <button class="view-tab active" onclick="switchView('map')">Map View</button>
-      <button class="view-tab" onclick="switchView('sequence')">Sequence View</button>
-      <button class="view-tab" onclick="switchView('table')">Table View</button>
+    <div class="view-tabs reveal" role="tablist" aria-label="Video plan views">
+      <button class="view-tab active" role="tab" aria-selected="true" aria-controls="view-map" id="tab-map" onclick="switchView('map', event)">Map View</button>
+      <button class="view-tab" role="tab" aria-selected="false" aria-controls="view-sequence" id="tab-sequence" onclick="switchView('sequence', event)">Sequence View</button>
+      <button class="view-tab" role="tab" aria-selected="false" aria-controls="view-table" id="tab-table" onclick="switchView('table', event)">Table View</button>
     </div>
 
     <div class="view-panels reveal">
       <!-- MAP VIEW -->
-      <div class="view-panel active" id="view-map">
+      <div class="view-panel active" id="view-map" role="tabpanel" aria-labelledby="tab-map">
         <div class="view-card">
           <div class="view-card-content">
             <div class="view-info">
@@ -1977,7 +2063,7 @@
       </div>
 
       <!-- SEQUENCE VIEW -->
-      <div class="view-panel" id="view-sequence">
+      <div class="view-panel" id="view-sequence" role="tabpanel" aria-labelledby="tab-sequence">
         <div class="view-card">
           <div class="view-card-content">
             <div class="view-info">
@@ -2041,7 +2127,7 @@
       </div>
 
       <!-- TABLE VIEW -->
-      <div class="view-panel" id="view-table">
+      <div class="view-panel" id="view-table" role="tabpanel" aria-labelledby="tab-table">
         <div class="view-card">
           <div class="view-card-content">
             <div class="view-info">
@@ -2451,7 +2537,8 @@
       <p>The most sophisticated pre-production structure advisor ever built. Get early access and be the first to plan smarter.</p>
 
       <form class="final-email-form" id="finalForm" onsubmit="handleEmailSubmit(event, 'finalForm')" action="https://formspree.io/f/mvzvgdkn" method="POST">
-        <input type="email" name="email" placeholder="your@email.com" required>
+        <label for="final-email" class="sr-only">Email address</label>
+        <input type="email" id="final-email" name="email" placeholder="your@email.com" required>
         <button type="submit">Join the Waitlist</button>
       </form>
       <div class="email-success" id="finalForm-success">
@@ -2461,6 +2548,8 @@
       <p class="email-note" style="text-align:center;">Free early access. No credit card. Your next video deserves a blueprint.</p>
     </div>
   </section>
+
+  </main><!-- /#main-content -->
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
@@ -2475,10 +2564,14 @@
     });
 
     // ---- View tabs ----
-    function switchView(view) {
-      document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+    function switchView(view, event) {
+      document.querySelectorAll('.view-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
       document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
       event.target.classList.add('active');
+      event.target.setAttribute('aria-selected', 'true');
       document.getElementById('view-' + view).classList.add('active');
     }
 

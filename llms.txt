@@ -1,0 +1,35 @@
+# PlotNode
+
+> PlotNode is the structural IDE for video creators. Map your YouTube video segments on a visual timeline, get research-backed retention predictions, and export directly to Premiere, DaVinci, or Final Cut Pro — before you film a single frame.
+
+PlotNode is a video pre-production tool designed for YouTube creators. It solves the core problem that every analytics tool (vidIQ, TubeBuddy, etc.) is a post-mortem — it tells you what went wrong after you've published. PlotNode is preventative medicine: it tells you where viewers will drop off *before* you film, so you can fix structural issues in seconds rather than after 20 hours of editing.
+
+## What PlotNode Does
+
+- **Visual Timeline Planning**: Drag-and-drop segments on a proportional visual canvas to map your video's structure before filming
+- **Retention Scoring Engine**: 30+ research-backed heuristics evaluate hook timing, segment variety, pacing rhythm, value density, sequence quality, and CTA placement
+- **Format & Niche Awareness**: Rules adapt dynamically to video length and format (tutorial, review, vlog, documentary, listicle, reaction, YouTube Shorts, etc.)
+- **Channel Intelligence**: Connect YouTube Analytics to map your actual retention curves to your structural choices
+- **Three Views**: Map View (spatial canvas), Sequence View (scriptwriting), and Table View (production tracking) — all showing the same plan
+- **Structured JSON Export**: Machine-readable export format designed for AI pipelines and automation tools
+- **NLE Export**: Export directly to Premiere Pro, DaVinci Resolve, and Final Cut Pro timeline formats
+- **Webhook Support**: Fire webhooks on export, score changes, and structure updates for n8n, Make, Zapier, or custom automation stacks
+- **OpenClaw Integration**: Native integration with OpenClaw AI agent via ClawHub plugin for end-to-end video automation
+
+## Who It's For
+
+YouTube creators, video producers, and content teams who want to engineer video structure rather than guess at it. Particularly useful for creators who run systematic, high-volume content operations and want to connect pre-production to downstream automation pipelines.
+
+## Product Status
+
+Pre-launch. Early access signups open at https://plotnode.io.
+
+## Key Pages
+
+- [Home](https://plotnode.io): Product overview, features, and early access signup
+- [Blog](https://plotnode.io/blog/): Insights on video pre-production, retention science, and AI automation workflows
+
+## Contact
+
+- Email: hello@plotnode.io
+- Website: https://plotnode.io
