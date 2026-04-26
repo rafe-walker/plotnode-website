@@ -1,35 +1,44 @@
-# PlotNode
+# Plotnode
 
-> PlotNode is the structural IDE for video creators. Map your YouTube video segments on a visual timeline, get research-backed retention predictions, and export directly to Premiere, DaVinci, or Final Cut Pro — before you film a single frame.
+> Plotnode is the digital twin platform for rural land. Drone photogrammetry import, auto-enriched parcel and well data, AI-assisted planning of structures, utilities, livestock, and crops on photorealistic 3D terrain. Built for off-grid homesteaders, ranchers, and the drone operators who serve them.
 
-PlotNode is a video pre-production tool designed for YouTube creators. It solves the core problem that every analytics tool (vidIQ, TubeBuddy, etc.) is a post-mortem — it tells you what went wrong after you've published. PlotNode is preventative medicine: it tells you where viewers will drop off *before* you film, so you can fix structural issues in seconds rather than after 20 hours of editing.
+## What Plotnode Does
 
-## What PlotNode Does
+- **3D drone-mesh import**: Upload OBJ, PLY, glTF, or point clouds from DroneDeploy, Pix4D, OpenDroneMap, RealityCapture, or DJI Terra. Plotnode processes them into streaming 3D Tiles automatically.
+- **Auto-enriched parcel data**: 155M+ U.S. parcels via Regrid. Cochise, Apache, and Mohave counties (Arizona) get deeper integration with county GIS, ADWR Wells 55 registry, tax-lien data, and zoning RAG.
+- **Rural-specific asset library**: 200+ parametric and procedurally-generated 3D assets — pole barns, corrals with squeeze chutes, chicken coops, water tanks, septic systems, ground-mount solar arrays, fencing, livestock shelters.
+- **AI co-pilot**: Crop suggestions ranked by USDA hardiness zone + NRCS soil + slope + elevation. Utility-routing optimizer for water/power/gas with trench volume estimates. "Auto-Homestead" generative layouts from natural-language goals.
+- **Zoning compliance warnings**: Place a chicken coop within 50ft of an RU-4 boundary in Cochise County and Plotnode flags the setback violation before you submit for permit.
+- **Physics simulation**: Solar shadow studies for any date and time of year. Water runoff visualization driven by DEM elevation data.
+- **County-spec PDF exports**: Generate site plan visualizations matching county templates. Cochise RU-4 ALQ format ready at launch.
+- **iOS native AR companion**: Walk your remote parcel without cell signal. Native iOS app pre-caches your 3D tileset before you leave WiFi, then renders ghosted structures in correct GPS positions through your iPhone camera using ARKit.
+- **Off-grid calculators**: Free calculators for solar + battery sizing (load-driven, not roof-driven), water catchment volume, cistern sizing, septic perc estimator, driveway cut/fill, panel tilt for winter optimization, and off-grid cabin cost.
 
-- **Visual Timeline Planning**: Drag-and-drop segments on a proportional visual canvas to map your video's structure before filming
-- **Retention Scoring Engine**: 30+ research-backed heuristics evaluate hook timing, segment variety, pacing rhythm, value density, sequence quality, and CTA placement
-- **Format & Niche Awareness**: Rules adapt dynamically to video length and format (tutorial, review, vlog, documentary, listicle, reaction, YouTube Shorts, etc.)
-- **Channel Intelligence**: Connect YouTube Analytics to map your actual retention curves to your structural choices
-- **Three Views**: Map View (spatial canvas), Sequence View (scriptwriting), and Table View (production tracking) — all showing the same plan
-- **Structured JSON Export**: Machine-readable export format designed for AI pipelines and automation tools
-- **NLE Export**: Export directly to Premiere Pro, DaVinci Resolve, and Final Cut Pro timeline formats
-- **Webhook Support**: Fire webhooks on export, score changes, and structure updates for n8n, Make, Zapier, or custom automation stacks
-- **OpenClaw Integration**: Native integration with OpenClaw AI agent via ClawHub plugin for end-to-end video automation
+## Three Modes
+
+- **Free** — General Plot mode. Search any U.S. parcel by address or APN. Photorealistic 3D terrain, parcel boundary overlay, basic asset library, view-only share links. No credit card required.
+- **Pro ($19/mo or $199/yr)** — Drone mesh upload, full asset library, AI co-pilot, all data overlays, zoning warnings, physics simulation, county PDF exports, real-time collaboration, unlimited projects.
+- **Operator White-Label ($99/mo founder tier, first 50 only)** — Branded subdomain (yourname.plotnode.io), client portal management, custom asset library and brand color theme, unlimited mesh processing, partner directory placement. Standard $149/mo and API Access $199/mo tiers post-launch.
 
 ## Who It's For
 
-YouTube creators, video producers, and content teams who want to engineer video structure rather than guess at it. Particularly useful for creators who run systematic, high-volume content operations and want to connect pre-production to downstream automation pipelines.
+Off-grid homesteaders, ranchers, custom acreage builders, permaculture designers, preppers, small farmers, rural realtors, and drone operators who serve rural clients. Particularly tuned for arid Southwest use cases (Arizona, New Mexico, southern Utah, southern Colorado, eastern Nevada) where existing tools fail.
+
+## Built Alongside Stronghold Precision Aerials
+
+Plotnode is built and field-tested by the team at Stronghold Precision Aerials, a Part 107 drone mapping business serving southeast Arizona. Every Stronghold flight ships with a Plotnode interactive portal as the canonical proof-of-concept.
 
 ## Product Status
 
-Pre-launch. Early access signups open at https://plotnode.io.
+Pre-launch. Early access waitlist open at https://plotnode.io.
 
 ## Key Pages
 
-- [Home](https://plotnode.io): Product overview, features, and early access signup
-- [Blog](https://plotnode.io/blog/): Insights on video pre-production, retention science, and AI automation workflows
+- [Home](https://plotnode.io): Product overview, three modes, features, and waitlist signup
+- [For Operators](https://plotnode.io/#operators): B2B white-label pitch for drone-mapping businesses
 
 ## Contact
 
 - Email: hello@plotnode.io
-- Website: https://plotnode.io
+- Parent company: Stormhaven Enterprises LLC, Cochise, Arizona
+- Veteran-owned business
